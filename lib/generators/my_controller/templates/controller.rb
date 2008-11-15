@@ -18,7 +18,7 @@ class <%= controller_class_name %>Controller < ApplicationController
   def create
     @<%= file_name %> = <%= class_name %>.new(params[:<%= file_name %>])
     if @<%= file_name %>.save
-      flash[:notice] = '<%= class_name %> was created.'
+      flash[:notice] = 'The <%= class_name %> was created.'
       redirect_to <%= file_name %>_path(@<%= file_name %>)
     else
       render :action => "new"
@@ -29,7 +29,7 @@ class <%= controller_class_name %>Controller < ApplicationController
     @<%= file_name %> = <%= class_name %>.find(params[:id])
 
     if @<%= file_name %>.update_attributes(params[:<%= file_name %>])
-      flash[:notice] = '<%= class_name %> was updated.'
+      flash[:notice] = 'The <%= class_name %> was updated.'
       redirect_to <%= file_name %>_path(@<%= file_name %>)
     else
       render :action => "edit"
@@ -38,7 +38,7 @@ class <%= controller_class_name %>Controller < ApplicationController
 
   def destroy
     <%= class_name %>.destroy(params[:id])
-    flash[:notice] = '<%= class_name %> was deleted.'
+    flash[:notice] = 'The <%= class_name %> was deleted.'
     redirect_to <%= plural_name %>_path
   end
 end

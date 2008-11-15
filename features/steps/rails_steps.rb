@@ -12,8 +12,13 @@ When /^I generate '(.*)'$/ do |command|
   `#{@current_codebase}/script/generate #{command}`
 end
 
+Then /^'(.*)' should be created$/ do |file_path|
+  File.exist?(File.join(@current_codebase, file_path)).should be_true
+end
+
 Then /^all the tests should pass$/ do
   output = `cd #{@current_codebase} && rake spec`
+  output.should_not match(/\s0 examples/i)
   output.should match(/0 failures/i)
   $?.exitstatus.should == 0
 end
