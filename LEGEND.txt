@@ -1,0 +1,39 @@
+LEGEND:
+table_name: foos
+file_name: foo
+class_name: Foo
+controller_name: foos
+controller_class_path: 
+controller_file_path: foos
+controller_class_nesting: 
+controller_class_nesting_depth: 0
+controller_class_name: Foos
+controller_singular_name: foos
+controller_plural_name: foos
+
+LEGEND:
+table_name: customers
+file_name: customer
+class_name: Customer
+controller_name: customers
+controller_class_path: 
+controller_file_path: customers
+controller_class_nesting: 
+controller_class_nesting_depth: 0
+controller_class_name: Customers
+controller_singular_name: customers
+controller_plural_name: customers
+
+
+LEGEND:
+table_name: foos_bars
+file_name: bar
+class_name: Foos::Bar
+controller_name: foos/bars
+controller_class_path: foos
+controller_file_path: foos/bars
+controller_class_nesting: Foos
+controller_class_nesting_depth: 1
+controller_class_name: Foos::Bars
+controller_singular_name: bars
+controller_plural_name: bars
