@@ -1,0 +1,9 @@
+<h2><%= controller_plural_name.humanize %></h2>
+
+<%% unless @<%= plural_name %>.empty? %>
+	<ul>
+		<%% @<%= plural_name %>.each do |<%= file_name %>| %>
+			<li><%%= link_to <%= file_name %>.id, <%= file_name %>_path(<%= file_name %>) %> | <%%= link_to 'edit', edit_<%= file_name %>_path(<%= file_name %>) %> | <%%= link_to 'delete', <%= file_name %>_path(<%= file_name %>), :method => :delete %></li>
+		<%% end %>
+	</ul>
+<%% end %>

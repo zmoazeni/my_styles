@@ -18,7 +18,14 @@ end
 
 Then /^all the tests should pass$/ do
   output = `cd #{@current_codebase} && rake spec`
+  # puts output
   output.should_not match(/\s0 examples/i)
   output.should match(/0 failures/i)
   $?.exitstatus.should == 0
+end
+
+Then /^the following files should be created:$/ do |file_table|
+  file_table.hashes.each do |hash|
+    Then "'#{hash['file']}' should be created"
+  end
 end

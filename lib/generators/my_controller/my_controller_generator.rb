@@ -28,12 +28,12 @@ class MyControllerGenerator < Rails::Generator::NamedBase
   
   def manifest
     record do |m|
-      
       # Check for class naming collisions.
       m.class_collisions(controller_class_path, "#{controller_class_name}Controller", "#{controller_class_name}Helper")
       
       m.directory(File.join('app/controllers', controller_class_path))
       m.directory(File.join('app/helpers', controller_class_path))
+      m.directory(File.join('app/views', controller_class_path, controller_file_name))
       
       m.directory(File.join('spec/controllers', controller_class_path))
       m.directory(File.join('spec/helpers', class_path))
@@ -42,18 +42,26 @@ class MyControllerGenerator < Rails::Generator::NamedBase
       m.template "controller.rb", File.join('app/controllers', controller_class_path, "#{controller_file_name}_controller.rb")
       m.template "controller_spec.rb", File.join('spec/controllers', controller_class_path, "#{controller_file_name}_controller_spec.rb")
       
-      puts "LEGEND:\n"
-      puts "table_name: #{table_name}"
-      puts "file_name: #{file_name}"
-      puts "class_name: #{class_name}"
-      puts "controller_name: #{controller_name}"
-      puts "controller_class_path: #{controller_class_path}"
-      puts "controller_file_path: #{controller_file_path}"
-      puts "controller_class_nesting: #{controller_class_nesting}"
-      puts "controller_class_nesting_depth: #{controller_class_nesting_depth}"
-      puts "controller_class_name: #{controller_class_name}"
-      puts "controller_singular_name: #{controller_singular_name}"
-      puts "controller_plural_name: #{controller_plural_name}"
+      # puts "LEGEND:\n"
+      # puts "table_name: #{table_name}"
+      # puts "file_name: #{file_name}"
+      # puts "class_name: #{class_name}"
+      # puts "controller_name: #{controller_name}"
+      # puts "controller_class_path: #{controller_class_path}"
+      # puts "controller_file_path: #{controller_file_path}"
+      # puts "controller_class_nesting: #{controller_class_nesting}"
+      # puts "controller_class_nesting_depth: #{controller_class_nesting_depth}"
+      # puts "controller_class_name: #{controller_class_name}"
+      # puts "controller_singular_name: #{controller_singular_name}"
+      # puts "controller_plural_name: #{controller_plural_name}"
+      
+      if options[:include_views]
+        m.template("index.html.erb", 
+          File.join('app/views', controller_class_path, controller_file_name, "index.html.erb"))
+        
+        m.directory(File.join('spec/views', controller_class_path, controller_file_name))
+        m.template("index.html.erb_spec.rb", File.join('spec/views', controller_class_path, controller_file_name, "index.html.erb_spec.rb"))
+      end
         
       m.route_resources controller_file_name
     end
@@ -63,5 +71,11 @@ class MyControllerGenerator < Rails::Generator::NamedBase
     # Override with your own usage banner.
     def banner
       "Usage: #{$0} my_controller controller"
+    end
+    
+    def add_options!(opt)
+      opt.separator ''
+      opt.separator 'Options:'
+      opt.on("--include-views", "Generates the views for the CRUD controller") { |v| options[:include_views] = v }
     end
 end
