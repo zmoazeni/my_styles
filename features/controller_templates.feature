@@ -14,7 +14,8 @@ Feature: Generating Controller Templates
       | file |
       | app/controllers/customers_controller.rb |
       | spec/controllers/customers_controller_spec.rb |
-      
+      | app/helpers/customers_helper.rb |
+      | spec/helpers/customers_helper_spec.rb |
     And all the tests should pass
     
   Scenario: Generating Rails CRUD with Views
@@ -24,6 +25,16 @@ Feature: Generating Controller Templates
       | file |
       | app/controllers/customers_controller.rb |
       | spec/controllers/customers_controller_spec.rb |
+      | app/helpers/customers_helper.rb |
+      | spec/helpers/customers_helper_spec.rb |
       | app/views/customers/index.html.erb |
       | spec/views/customers/index.html.erb_spec.rb |
+#      | app/views/customers/edit.html.erb |
+#      | spec/views/customers/edit.html.erb_spec.rb |
+      | app/views/customers/new.html.erb |
+      | spec/views/customers/new.html.erb_spec.rb |
+#      | app/views/customers/_form.html.erb |
+#      | spec/views/customers/_form.html.erb_spec.rb |
+#      | app/views/customers/show.html.erb |
+#      | spec/views/customers/show.html.erb_spec.rb |
     And all the tests should pass

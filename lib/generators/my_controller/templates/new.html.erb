@@ -1,0 +1,10 @@
+<h2>New <%= controller_singular_name.humanize %></h2>
+
+<%% form_for :<%= file_name %>, :url => <%= plural_name %>_path do |f| %>
+	<%%= render :partial => "form", :locals => { :f => f } %>
+	
+	<div>
+		<%%= submit_tag "Create" %>
+		<%%= link_to "Cancel", <%= plural_name %>_path %>
+	</div>
+<%% end %>
