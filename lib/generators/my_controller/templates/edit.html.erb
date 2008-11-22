@@ -1,0 +1,10 @@
+<h2>Edit <%= controller_singular_name.humanize %></h2>
+
+<%% form_for :<%= file_name %>, :url => <%= file_name %>_path(@<%= file_name %>), :html => { :method => :put } do |f| %>
+	<%%= render :partial => "form", :locals => { :f => f } %>
+	
+	<div>
+		<%%= submit_tag "Update" %>
+		<%%= link_to "Cancel", <%= file_name %>_path(@<%= file_name %>) %>
+	</div>
+<%% end %>

@@ -29,8 +29,8 @@ Feature: Generating Controller Templates
       | spec/helpers/customers_helper_spec.rb |
       | app/views/customers/index.html.erb |
       | spec/views/customers/index.html.erb_spec.rb |
-#      | app/views/customers/edit.html.erb |
-#      | spec/views/customers/edit.html.erb_spec.rb |
+      | app/views/customers/edit.html.erb |
+      | spec/views/customers/edit.html.erb_spec.rb |
       | app/views/customers/new.html.erb |
       | spec/views/customers/new.html.erb_spec.rb |
 #      | app/views/customers/_form.html.erb |

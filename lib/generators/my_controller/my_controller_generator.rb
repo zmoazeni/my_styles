@@ -45,23 +45,10 @@ class MyControllerGenerator < Rails::Generator::NamedBase
       m.template "helper.rb", File.join('app/helpers', controller_class_path, "#{controller_file_name}_helper.rb")
       m.template "helper_spec.rb", File.join('spec/helpers', controller_class_path, "#{controller_file_name}_helper_spec.rb")
       
-      # puts "LEGEND:\n"
-      # puts "table_name: #{table_name}"
-      # puts "file_name: #{file_name}"
-      # puts "class_name: #{class_name}"
-      # puts "controller_name: #{controller_name}"
-      # puts "controller_class_path: #{controller_class_path}"
-      # puts "controller_file_path: #{controller_file_path}"
-      # puts "controller_class_nesting: #{controller_class_nesting}"
-      # puts "controller_class_nesting_depth: #{controller_class_nesting_depth}"
-      # puts "controller_class_name: #{controller_class_name}"
-      # puts "controller_singular_name: #{controller_singular_name}"
-      # puts "controller_plural_name: #{controller_plural_name}"
-      
       if options[:include_views]
         m.directory(File.join('spec/views', controller_class_path, controller_file_name))
         
-        %w(index new).each do |view|
+        %w(index new edit).each do |view|
           m.template("#{view}.html.erb", File.join('app/views', controller_class_path, controller_file_name, "#{view}.html.erb"))
           m.template("#{view}.html.erb_spec.rb", File.join('spec/views', controller_class_path, controller_file_name, "#{view}.html.erb_spec.rb"))
         end
