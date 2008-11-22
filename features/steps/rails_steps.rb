@@ -10,6 +10,7 @@ end
 
 When /^I generate '(.*)'$/ do |command|
   output = `#{@current_codebase}/script/generate #{command}`
+  # puts output
   output.should_not match(/No such file or directory/i)
   $?.exitstatus.should == 0
 end

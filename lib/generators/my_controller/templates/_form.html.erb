@@ -1,0 +1,8 @@
+<%%= error_messages_for :<%= file_name %> %>
+
+<% full_model_columns.each do |column| %>
+<div>
+	<%%= f.label :<%= column.name %> %>
+	<%%= <%= helper_for_column(column) %> %>
+</div>
+<% end %>

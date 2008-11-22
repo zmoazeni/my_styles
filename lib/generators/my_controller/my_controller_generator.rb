@@ -8,7 +8,8 @@ class MyControllerGenerator < Rails::Generator::NamedBase
               :controller_class_name,
               :controller_singular_name,
               :controller_plural_name,
-              :model_columns
+              :model_columns,
+              :full_model_columns
                 
   alias_method :controller_file_name, :controller_singular_name
                 
@@ -48,9 +49,10 @@ class MyControllerGenerator < Rails::Generator::NamedBase
       
       if options[:include_views]
         @model_columns = class_name.constantize.column_names - %w(id created_at updated_at)
+        @full_model_columns = class_name.constantize.columns.select { |c| !%w(id created_at updated_at).include?(c.name) }
         m.directory(File.join('spec/views', controller_class_path, controller_file_name))
         
-        %w(index new edit show).each do |view|
+        %w(index new edit show _form).each do |view|
           m.template("#{view}.html.erb", File.join('app/views', controller_class_path, controller_file_name, "#{view}.html.erb"))
           m.template("#{view}.html.erb_spec.rb", File.join('spec/views', controller_class_path, controller_file_name, "#{view}.html.erb_spec.rb"))
         end
@@ -70,5 +72,35 @@ class MyControllerGenerator < Rails::Generator::NamedBase
       opt.separator ''
       opt.separator 'Options:'
       opt.on("--include-views", "Generates the views for the CRUD controller") { |v| options[:include_views] = v }
+    end
+    
+    def helper_for_column(column)
+      case column.type
+      when :integer, :string, :float, :decimal
+        "f.text_field :#{column.name}"
+      when :datetime, :date, :timestamp, :time
+        "f.datetime_select :#{column.name}"
+      when :text
+        "f.text_area :#{column.name}"
+      when :boolean
+        "f.check_box :#{column.name}"
+      else
+        raise "unknown type #{column.type}"
+      end
+    end
+    
+    def spec_matcher_for_column(column)
+      case column.type
+      when :integer, :string, :float, :decimal
+        "\"input[type=text][name=?][value=?]\", \"#{file_name}[#{column.name}]\", \"the #{column.name}\""
+      when :datetime, :date, :timestamp, :time
+        "\"select[name=?]\", \"#{file_name}[#{column.name}]\""
+      when :text
+        "\"textarea[name=?][value=?]\", \"#{file_name}[#{column.name}]\", \"the #{column.name}\""
+      when :boolean
+        "\"input[type=checkbox][name=?]\", \"#{file_name}[#{column.name}]\""
+      else
+        raise "unknown type #{column.type}"
+      end
     end
 end
