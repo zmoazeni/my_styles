@@ -9,7 +9,9 @@ Given(/^I'm using a (.*) code base$/) do |key|
 end
 
 When /^I generate '(.*)'$/ do |command|
-  `#{@current_codebase}/script/generate #{command}`
+  output = `#{@current_codebase}/script/generate #{command}`
+  output.should_not match(/No such file or directory/i)
+  $?.exitstatus.should == 0
 end
 
 Then /^'(.*)' should be created$/ do |file_path|
