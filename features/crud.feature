@@ -16,6 +16,7 @@ Feature: Generating Controller Templates
       | spec/controllers/customers_controller_spec.rb |
       | app/helpers/customers_helper.rb |
       | spec/helpers/customers_helper_spec.rb |
+    And the routes should be updated
     And all the tests should pass
     
   Scenario: Generating Rails CRUD with Views
@@ -37,4 +38,5 @@ Feature: Generating Controller Templates
       | spec/views/customers/_form.html.erb_spec.rb |
       | app/views/customers/show.html.erb |
       | spec/views/customers/show.html.erb_spec.rb |
+    And the routes should be updated
     And all the tests should pass

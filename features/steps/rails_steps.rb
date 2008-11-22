@@ -27,6 +27,11 @@ Then /^all the tests should pass$/ do
   $?.exitstatus.should == 0
 end
 
+Then /^the routes should be updated$/ do
+  routes = File.read(File.join(@current_codebase, "config", "routes.rb"))
+  routes.should match(/^\s*map\.resources :/i)
+end
+
 Then /^the following files should be created:$/ do |file_table|
   file_table.hashes.each do |hash|
     Then "'#{hash['file']}' should be created"
