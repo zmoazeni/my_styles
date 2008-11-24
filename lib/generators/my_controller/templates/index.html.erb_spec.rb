@@ -35,5 +35,10 @@ describe "/<%= table_name %>/index.html.erb" do
     response.should have_tag("a[href=#{<%= file_name %>_path(67)}][onclick=?]", delete_js)
     response.should have_tag("a[href=#{<%= file_name %>_path(68)}][onclick=?]", delete_js)
   end
+  
+  it "should render a link to create a <%= file_name %>" do
+    do_render
+    response.should have_tag("a[href=#{new_<%= file_name %>_path}]")
+  end
 end
 

@@ -1,4 +1,4 @@
-<h2><%= controller_plural_name.humanize %></h2>
+<h2><%= controller_plural_name.humanize %> <%%= link_to "New", new_<%= file_name %>_path %></h2>
 
 <%% unless @<%= plural_name %>.empty? %>
 	<ul>
