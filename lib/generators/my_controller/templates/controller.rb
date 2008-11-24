@@ -3,16 +3,8 @@ class <%= controller_class_name %>Controller < ApplicationController
     @<%= plural_name %> = <%= class_name %>.find(:all)
   end
 
-  def show
-    @<%= file_name %> = <%= class_name %>.find(params[:id])
-  end
-
   def new
     @<%= file_name %> = <%= class_name %>.new
-  end
-
-  def edit
-    @<%= file_name %> = <%= class_name %>.find(params[:id])
   end
 
   def create
@@ -24,6 +16,10 @@ class <%= controller_class_name %>Controller < ApplicationController
       render :action => "new"
     end
   end
+  
+  def edit
+    @<%= file_name %> = <%= class_name %>.find(params[:id])
+  end
 
   def update
     @<%= file_name %> = <%= class_name %>.find(params[:id])
@@ -34,6 +30,10 @@ class <%= controller_class_name %>Controller < ApplicationController
     else
       render :action => "edit"
     end
+  end
+  
+  def show
+    @<%= file_name %> = <%= class_name %>.find(params[:id])
   end
 
   def destroy
