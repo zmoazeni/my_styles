@@ -4,7 +4,7 @@ describe "/<%= table_name %>/_form.html.erb" do
   before do
     @<%= file_name %> = stub
     
-    simple_stub(@<%= file_name %>, <% model_columns.each_with_index do |column, index| %>:<%= column %><%= "," if index != model_columns.size - 1 %><% end %> )
+    simple_stub(@<%= file_name %>, <% model_columns.each_with_index do |column, index| %>:<%= column %><%= ", " if index != model_columns.size - 1 %><% end %> )
       
     template.stubs(:error_messages_for).with(:<%= file_name %>).returns("the errors")
   end

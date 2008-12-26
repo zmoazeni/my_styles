@@ -4,7 +4,7 @@ describe "/<%= table_name %>/show.html.erb" do
   before do
     assigns[:<%= file_name %>] = @<%= file_name %> = stub(:to_param => "22")
     
-    simple_stub(@<%= file_name %>, <% model_columns.each_with_index do |column, index| %>:<%= column %><%= "," if index != model_columns.size - 1 %><% end %> )
+    simple_stub(@<%= file_name %>, <% model_columns.each_with_index do |column, index| %>:<%= column %><%= ", " if index != model_columns.size - 1 %><% end %> )
   end
   
   def do_render
