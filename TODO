@@ -1,0 +1,5 @@
+- edit_spec : Need assertion for the method=put
+- form spec : change the format to ...[name='model[field]'][value='something']
+- allow the generator to specify the model name
+- allow the specification of a plural controller name
+- allow the specification of a resource as opposed to a resources
