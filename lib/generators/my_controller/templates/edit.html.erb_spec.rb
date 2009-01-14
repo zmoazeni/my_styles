@@ -4,7 +4,7 @@ describe "/<%= table_name %>/edit.html.erb" do
   before do
     assigns[:<%= file_name %>] = @<%= file_name %> = stub(:to_param => "31")
     
-    template.should_receive(:render).with(:partial => "form", :locals => { :f => form_builder(:customer) }).and_return("the form")
+    template.should_receive(:render).with(:partial => "form", :locals => { :f => form_builder(:<%= file_name %>) }).and_return("the form")
   end
   
   def do_render
