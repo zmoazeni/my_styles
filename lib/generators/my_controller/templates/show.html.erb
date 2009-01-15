@@ -7,6 +7,6 @@
 <% end %>
 
 <div>
-	<%%= link_to "Edit", edit_<%= file_name %>_path(@<%= file_name %>) %> %>
+	<%%= link_to "Edit", edit_<%= file_name %>_path(@<%= file_name %>) %>
 	<%%= link_to "Delete", <%= file_name %>_path(@<%= file_name %>), :method => :delete, :confirm => "Are you sure you want to delete this <%= file_name %>" %>
 </div>
