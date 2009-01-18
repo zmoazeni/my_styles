@@ -28,7 +28,7 @@ describe "/<%= table_name %>/edit.html.erb" do
   
   it "should display a cancel link" do
     do_render
-    response.should have_tag("a[href=#{<%= file_name %>_path(31)}]")
+    response.should have_tag("a[href=#{<%= plural_path %>_path}]")
   end
 end
 
